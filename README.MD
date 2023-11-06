@@ -102,7 +102,7 @@ After=network.target
 Type=simple
 User=root
 WorkingDirectory=/root/bots/<bot_directory>
-ExecStart=/usr/bin/python3 /root/bots/<bot_directory>/bot.py
+ExecStart=/root/bots/<bot_directory>/venv/bin/python /root/bots/<bot_directory>/bot.py
 RestartSec=10
 Restart=always
 
