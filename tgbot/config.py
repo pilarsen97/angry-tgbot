@@ -146,6 +146,9 @@ class Miscellaneous:
 
     other_params: str = None
 
+    sqlite_db: Optional[str] = None
+    raf_id: Optional[int] = None
+
 
 @dataclass
 class Config:
@@ -185,9 +188,16 @@ def load_config(path: str = None) -> Config:
     env = Env()
     env.read_env(path)
 
+    sqlite_db = env.str("SQLITE_DB")
+    raf_id = env.int("RAF_ID")
+
+
     return Config(
         tg_bot=TgBot.from_env(env),
         # db=DbConfig.from_env(env),
         # redis=RedisConfig.from_env(env),
-        misc=Miscellaneous(),
+        misc=Miscellaneous(
+            sqlite_db=sqlite_db,
+            raf_id=raf_id,
+        ),
     )
