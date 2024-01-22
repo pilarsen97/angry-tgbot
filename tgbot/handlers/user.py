@@ -18,10 +18,13 @@ async def user_start(message: Message):
 
 
 @user_router.message(F.text.lower() == 'видел')
+@user_router.message(F.text.lower() == 'видал')
 @user_router.message(F.text.lower() == 'теселем')
 @user_router.message(F.text.lower() == 'тесселем')
 @user_router.message(F.text.lower() == 'тессел ем')
 @user_router.message(F.text.lower() == 'тесел ем')
+@user_router.message(F.text.lower() == 'тес ел ем')
+@user_router.message(F.text.lower() == 'тесацрелем')
 async def user_start(message: Message):
     if not message.from_user.id in config.tg_bot.admin_ids:
         await message.reply(f'Всем похуй, иди на хуй, @{message.from_user.username}!')
