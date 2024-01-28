@@ -2,6 +2,7 @@ from aiogram import Router, F
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, ReplyKeyboardRemove
 from tgbot.config import load_config
+from aiogram.dispatcher.filters.builtin import RegexpCommandsFilter
 
 from tgbot.filters.admin import AdminFilter
 
@@ -10,7 +11,7 @@ user_router = Router()
 config = load_config()
 
 
-@user_router.message(F.text.contains('видел'))
+@user_router.message(Text(regexp=r'(?i)видел'))
 @user_router.message(F.text.contains('Видел'))
 async def user_start(message: Message):
     if message.from_user.id == config.misc.raf_id:
@@ -24,6 +25,7 @@ async def user_start(message: Message):
 @user_router.message(F.text.lower() == 'тессел ем')
 @user_router.message(F.text.lower() == 'тесел ем')
 @user_router.message(F.text.lower() == 'тес ел ем')
+@user_router.message(F.text.lower() == 'тес эл ем')
 @user_router.message(F.text.lower() == 'тесацрелем')
 async def user_start(message: Message):
     if not message.from_user.id in config.tg_bot.admin_ids:
